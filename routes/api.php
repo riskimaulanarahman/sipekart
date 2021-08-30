@@ -29,4 +29,4 @@ Route::apiResource('/master-user','masteruser\LoginUserController');
 
 //list
 Route::post('list-kegiatan','API\ListController@listKegiatan');
-Route::post('list-rt','API\ListController@listRT');
+Route::get('list-rt','API\ListController@listRT');

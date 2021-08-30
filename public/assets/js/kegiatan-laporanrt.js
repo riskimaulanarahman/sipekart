@@ -47,9 +47,9 @@ var dataGrid = $("#kegiatan-laporanrt").dxDataGrid({
     editing: {
         useIcons:true,
         mode: "popup",
-        allowAdding: true,
+        allowAdding: (role == "operator")?true:false,
         allowUpdating: true,
-        allowDeleting: true,
+        allowDeleting: (role == "operator")?true:false,
         popup: {
             title: "Kegiatan RT",
             showTitle: true,
@@ -67,16 +67,16 @@ var dataGrid = $("#kegiatan-laporanrt").dxDataGrid({
                     widget: 'dxButton',
                     options: {
                         onClick: function(e) {
-                            if($path=="") {
-                                DevExpress.ui.notify("Silakan pilih gambar Anda sebelum menyimpan data","error");
-                            } else {
+                            // if($path=="") {
+                            //     DevExpress.ui.notify("Silakan pilih gambar Anda sebelum menyimpan data","error");
+                            // } else {
                                 if($adafile) {
                                     DevExpress.ui.notify("Harap selesaikan unggahan Anda sebelum menyimpan data","error");
                                     e.cancel = true;
                                 } else {
                                     datagrid.saveEditData();
                                 }
-                            }
+                            // }
                         },
                         text: 'Simpan'
                     }
@@ -137,6 +137,12 @@ var dataGrid = $("#kegiatan-laporanrt").dxDataGrid({
             }
         },
         { 
+            dataField: "users.id_rt",
+            caption: "Nomor RT",
+            width: 40,
+            visible: (role=="admin")?true:false,
+        },
+        { 
             caption: "Jenis Kegiatan",
             dataField: "id_kegiatan",
             // width: 250,
@@ -154,6 +160,14 @@ var dataGrid = $("#kegiatan-laporanrt").dxDataGrid({
                 { type: "required" }
             ],
             dataType:"date", format:"dd-MM-yyyy",displayFormat: "dd-MM-yyyy",
+        },
+        { 
+            dataField: "bulan",
+            caption: "bulan",
+        },
+        { 
+            dataField: "tahun",
+            caption: "tahun",
         },
         { 
             dataField: "keterangan",

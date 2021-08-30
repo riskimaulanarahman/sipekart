@@ -74,32 +74,10 @@
             key: "id",
             loadMode: "raw",
             load: function() {
-                return $.post(apiurl + "/list-rt");
+                return $.get(apiurl + "/list-rt");
             }
         }),
         sort: "id"
-    }
-    
-    listLevelUser = {
-        store: new DevExpress.data.CustomStore({
-            key: "id_level",
-            loadMode: "raw",
-            load: function() {
-                return $.post(apiurl + "/list/level-user");
-            }
-        }),
-        sort: "jenis_level_user"
-    }
-    
-    listStatusUser = {
-        store: new DevExpress.data.CustomStore({
-            key: "id_status",
-            loadMode: "raw",
-            load: function() {
-                return $.post(apiurl + "/list/status-user");
-            }
-        }),
-        sort: "status_pengguna"
     }
 
     listKegiatan = {

@@ -22,15 +22,50 @@
 			<!-- end panel-heading -->
 			<!-- begin panel-body -->
 			<div class="panel-body">
-				{{-- <div class="row">
-					<div class="col-md-4">
-						<select name="getrt" id="getrt" class="form-control">
-							<option value="">-- Pilih RT --</option>
-							<option value="1">RT 1</option>
-							<option value="2">RT 2</option>
+				@if(Auth::user()->role == "admin")
+				<div class="row">
+					<div class="col-md-3">
+						<select name="bulan" id="bulan" class="form-control">
+							<option value="">-- Pilih Bulan --</option>
+							<option value="01">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
 						</select>
 					</div>
-				</div> --}}
+					<div class="col-md-3">
+						<select name="tahun" id="tahun" class="form-control">
+							<option value="">-- Pilih Tahun --</option>
+							<option value="2020">2020</option>
+							<option value="2021">2021</option>
+							<option value="2022">2022</option>
+							<option value="2023">2023</option>
+							<option value="2024">2024</option>
+							<option value="2025">2025</option>
+							<option value="2027">2027</option>
+							<option value="2028">2028</option>
+							<option value="2029">2029</option>
+							<option value="2030">2030</option>
+							<option value="2031">2031</option>
+							<option value="2032">2032</option>
+						</select>
+					</div>
+					<div class="col-md-3">
+						<select name="getrt" id="getrt" class="form-control"></select>
+					</div>
+					<div class="col-md-3">
+						<button id="print-laporan" class="btn btn-danger">Print Laporan</button>
+					</div>
+				</div>
+				@endif
 				<div id="popup"></div>
 
                 <div id="kegiatan-laporanrt" style="height: 640px; width:100%;"></div>
@@ -43,5 +78,19 @@
 
 @push('scripts')
 <script src="/assets/js/kegiatan-laporanrt.js?n=1"></script>
+<script>
+	$.getJSON('/api/list-rt',function(item){
+		$('#getrt').html('');
 
+		$('#getrt').append("<option value=''> -- Pilih Nomor RT -- </option>")
+
+		$.each(item,function(x,y){
+			$('#getrt').append("<option value='"+y.nomor_rt+"'> "+y.nomor_rt+" </option>");
+		})
+	})
+
+	$('#print-laporan').on("click",function(){
+		alert('fitur belum tersedia')
+	})
+</script>
 @endpush
