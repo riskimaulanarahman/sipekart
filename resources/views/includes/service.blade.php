@@ -68,6 +68,17 @@
         }),
         sort: "nama_kelurahan"
     }
+
+    listRT = {
+        store: new DevExpress.data.CustomStore({
+            key: "id",
+            loadMode: "raw",
+            load: function() {
+                return $.post(apiurl + "/list-rt");
+            }
+        }),
+        sort: "id"
+    }
     
     listLevelUser = {
         store: new DevExpress.data.CustomStore({
@@ -91,26 +102,15 @@
         sort: "status_pengguna"
     }
 
-    listSuratpelayanan = {
+    listKegiatan = {
         store: new DevExpress.data.CustomStore({
-            key: "id_jenis_surat_pelayanan",
+            key: "id",
             loadMode: "raw",
             load: function() {
-                return $.post(apiurl + "/list-suratpelayanan");
+                return $.post(apiurl + "/list-kegiatan"+'?_token=' + '{{ csrf_token() }}');
             }
         }),
-        sort: "nama_jenis_surat_pelayanan"
-    }
-
-    listJabatan = {
-        store: new DevExpress.data.CustomStore({
-            key: "id_jabatan",
-            loadMode: "raw",
-            load: function() {
-                return $.post(apiurl + "/list-jabatan");
-            }
-        }),
-        sort: "nama_jabatan"
+        sort: "nama_kegiatan"
     }
     
     

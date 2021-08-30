@@ -17,12 +17,12 @@ use Illuminate\Support\Carbon;
 class ListController extends Controller
 {
 
-    public function listSuratPelayanan() {
-        return DB::table('ref_jenis_surat_pelayanan')->select('id_jenis_surat_pelayanan','nama_jenis_surat_pelayanan')->get();
+    public function listKegiatan() {
+        return DB::table('kegiatans')->select('id','nama_kegiatan')->get();
     }
 
-    public function listJabatan() {
-        return DB::table('ref_jabatan')->select('id_jabatan','nama_jabatan')->get();
+    public function listRT() {
+        return DB::table('rt')->select('id','nomor_rt')->get();
     }
 
 }

@@ -15,7 +15,7 @@
 			<span class="icon-bar"></span>
 		</button>
 		@endif
-		<a href="/" class="navbar-brand"><b>SIMFEL</b></a>
+		<a href="/" class="navbar-brand"><i class="fa fa-newspaper p-r-5"></i><b> SIMPEK RT</b></a>
 		@if ($headerMegaMenu)
 			<button type="button" class="navbar-toggle pt-0 pb-0 mr-0" data-toggle="collapse" data-target="#top-navbar">
 				<span class="fa-stack fa-lg text-inverse">
@@ -80,7 +80,7 @@
 		<li class="dropdown navbar-user">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				{{-- <img src="/assets/img/user/user-13.jpg" alt="" />  --}}
-				<span class="d-none d-md-inline">{{ Auth::user()->nama_lengkap }} </span> <b class="caret"></b>
+				<span class="d-none d-md-inline">{{ Auth::user()->nama_lengkap }} </span> <b class="fa fa-caret-down"></b>
 			</a>
 			<input type="hidden" class="roleuser" value="{{Auth::user()->role}}">
 			<div class="dropdown-menu dropdown-menu-right">

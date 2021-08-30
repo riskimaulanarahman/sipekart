@@ -1,6 +1,6 @@
 @extends('layouts.default', ['sidebarSearch' => true])
 
-@section('title', 'Master User')
+@section('title', 'Kegiatan RT')
 
 @section('content')
 
@@ -9,7 +9,7 @@
 		<div class="panel panel-info">
 			<!-- begin panel-heading -->
 			<div class="panel-heading">
-				<h4 class="panel-title">Tabel User </h4>
+				<h4 class="panel-title">Kegiatan RT </h4>
 				<div class="panel-heading-btn">
 					<!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a> -->
 					{{-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success reloadalltabel"
@@ -22,7 +22,16 @@
 			<!-- end panel-heading -->
 			<!-- begin panel-body -->
 			<div class="panel-body">
-                <div id="master-user" style="height: 640px; width:100%;"></div>
+				{{-- <div class="row">
+					<div class="col-md-4">
+						<select name="getrt" id="getrt" class="form-control">
+							<option value="">-- Pilih RT --</option>
+							<option value="1">RT 1</option>
+							<option value="2">RT 2</option>
+						</select>
+					</div>
+				</div> --}}
+                <div id="kegiatan-rt" style="height: 640px; width:100%;"></div>
 			</div>
 			<!-- end panel-body -->
 		</div>
@@ -31,6 +40,6 @@
 @endsection
 
 @push('scripts')
-<script src="/assets/js/masteruser/masteruser.js?n=1"></script>
+<script src="/assets/js/kegiatan-rt.js?n=1"></script>
 
 @endpush

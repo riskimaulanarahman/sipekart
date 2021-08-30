@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\masteruser;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\User;
+use App\Kegiatan;
 
-
-class LoginUserController extends Controller
+class KegiatanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +15,7 @@ class LoginUserController extends Controller
     public function index()
     {
         try {
-            $data = User::all();
+            $data = Kegiatan::all();
 
             return response()->json(['status' => "show", "message" => "Menampilkan Data" , 'data' => $data]);
 
@@ -35,25 +33,12 @@ class LoginUserController extends Controller
      */
     public function store(Request $request)
     {
-
+        $requestData = $request->all();
+ 
         try {
-            $checkuser = User::where('id_rt',$request->id_rt)->count();
+            Kegiatan::create($requestData);
 
-            if($checkuser==0) {
-                $data = User::create([
-                    'nama_lengkap' => $request->nama_lengkap,
-                    'username' => $request->username,
-                    'email' => $request->email,
-                    'password' => bcrypt($request->password),
-                    'role' => $request->role,
-                    'id_rt' => $request->id_rt,
-                    'nomor_hp' => $request->nomor_hp,
-                ]);
-                return response()->json(["status" => "success", "message" => "Berhasil Menambahkan Data"]);
-            } else {
-                return response()->json(["status" => "error", "message" => "RT Sudah Ada"]);
-            }
-
+            return response()->json(["status" => "success", "message" => "Berhasil Menambahkan Data"]);
 
         } catch (\Exception $e){
 
@@ -61,9 +46,15 @@ class LoginUserController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show()
     {
-        return view('pages/masteruser/masteruser');
+        return view('pages/kegiatan/index');
     }
 
     /**
@@ -75,17 +66,11 @@ class LoginUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-
-            $data = User::findOrFail($id);
-            $data->update($request->all());
-            $data->save();
-
-            if(!empty($request->password)) {
-                $data->password = bcrypt($request->password);
-                $data->save();
-            }
+        $requestData = $request->all();
         
+        try {
+            $data = Kegiatan::findOrFail($id);
+            $data->update($requestData);
 
             return response()->json(["status" => "success", "message" => "Berhasil Ubah Data"]);
 
@@ -104,13 +89,7 @@ class LoginUserController extends Controller
     public function destroy($id)
     {
         try {
-            $data = User::findOrFail($id);
-
-            if($data->role == 'admin') {
-                return response()->json(["status" => "error", "message" => "Admin Tidak Bisa Dihapus"]);
-            } else {
-                $data->delete();
-            }
+            $data = Kegiatan::find($id)->delete();
 
             return response()->json(["status" => "success", "message" => "Berhasil Hapus Data"]);
 

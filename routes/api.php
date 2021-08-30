@@ -22,11 +22,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Route::apiResource('/surat-keluar','masterdatasurat\suratkeluar\SuratkeluarController');
 // Route::apiResource('/surat-pelayanan','masterdatasurat\suratpelayanan\SuratpelayananController');
 // Route::apiResource('/surat-vital','masterdatasurat\suratpelayanan\SuratvitalController');
-Route::post('/upload-berkas/{id}/{module}','BerkasController@update')->name('uploadberkas');
+Route::post('/upload-berkas','BerkasController@update')->name('uploadberkas');
 
 //master user
 Route::apiResource('/master-user','masteruser\LoginUserController');
 
 //list
-Route::post('list-suratpelayanan','API\ListController@listSuratPelayanan');
-Route::post('list-jabatan','API\ListController@listJabatan');
+Route::post('list-kegiatan','API\ListController@listKegiatan');
+Route::post('list-rt','API\ListController@listRT');

@@ -22,7 +22,7 @@
 		});
     }
 
-    RoleType = [{id:1,roletype:"admin"},{id:2,roletype:"supervisor"},{id:3,roletype:"operator"}];
+    RoleType = [{id:1,roletype:"operator"}];
     // attribute
     var dataGrid = $("#master-user").dxDataGrid({    
         dataSource: store,
@@ -62,23 +62,22 @@
                     colSpan: 2,
                     items: [
                         {
-                            dataField: "role",
-                        },
-                        {
-                            dataField: "jabatan",
-                            // visible: false,
+                            dataField: "nama_lengkap",
                         },
                         {
                             dataField: "nomor_hp",
-                            // visible: false,
-                        }
+                        },
+                        {
+                            dataField: "id_rt",
+                        },
+                        
                     ]
                 }, {
                     itemType: "group",
                     colCount: 2,
                     colSpan: 2,
                     caption: "Login Info",
-                    items: ["nama_lengkap","email", "username","password"]
+                    items: ["role","email", "username","password"]
                 }]
             }
         },
@@ -117,6 +116,9 @@
                 dataField: "email",
                 validationRules: [
                     { 
+                        type: "email" 
+                    },
+                    { 
                         type: "required" 
                     }
                 ]
@@ -134,17 +136,29 @@
                 },
             },
             { 
-                dataField: "jabatan",
+                dataField: "id_rt",
                 editorType: "dxSelectBox",
                 validationRules: [
                     { type: "required" }
                 ],
-                editorOptions: {
-                    dataSource: listJabatan,  
-                    valueExpr: 'nama_jabatan',
-                    displayExpr: 'nama_jabatan',
+                lookup: {
+                    dataSource: listRT,  
+                    valueExpr: 'id',
+                    displayExpr: 'nomor_rt',
                 },
-            },
+            },   
+            // { 
+            //     dataField: "jabatan",
+            //     editorType: "dxSelectBox",
+            //     validationRules: [
+            //         { type: "required" }
+            //     ],
+            //     editorOptions: {
+            //         dataSource: listJabatan,  
+            //         valueExpr: 'nama_jabatan',
+            //         displayExpr: 'nama_jabatan',
+            //     },
+            // },
             { 
                 dataField: "nomor_hp",
                 caption: "nomor hp",

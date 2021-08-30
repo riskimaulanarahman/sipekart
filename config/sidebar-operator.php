@@ -17,6 +17,7 @@ return [
             'icon' => 'fa fa-th-large',
             'title' => 'Dashboard',
             'url' => '/',
+            'route-name' => 'admin.index'
         ],[
             'icon' => 'fa fa-hdd',
             'title' => 'Master Data',
@@ -24,26 +25,19 @@ return [
             'caret' => true,
             'sub_menu' => [
                 [
+                    'url' => '/kegiatan-laporanrt',
+                    'title' => 'Kinerja Ketua RT',
+                    'route-name' => 'admin.kegiatan-laporanrt'
+                ],
+                [
                     'url' => 'javascript:;',
-                    'title' => 'Master Data Penduduk'
-                ],[
-                'url' => 'javascript:;',
-                'title' => 'Master Data Surat',
-                'sub_menu' => [[
-                    'url' => '/surat-masuk',
-                    'title' => 'Surat Masuk',
-                    'route-name' => 'admin.suratmasuk'
-
-                ],[
-                    'url' => '/surat-keluar',
-                    'title' => 'Surat Keluar',
-                    'route-name' => 'admin.suratkeluar'
-                ],[
-                    'url' => '/surat-pelayanan',
-                    'title' => 'Surat Pelayanan',
-                    'route-name' => 'admin.suratpelayanan'
-                ]]
-            ]]
+                    'title' => 'Kematian Warga'
+                ],
+                [
+                    'url' => 'javascript:;',
+                    'title' => 'Demografi RT'
+                ],
+            ]
         ],[
             'icon' => 'fa fa-question-circle',
             'title' => 'Bantuan',

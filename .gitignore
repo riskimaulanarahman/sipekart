@@ -10,6 +10,7 @@
 # npm-debug.log
 # yarn-error.log
 # /.vscode
+/public/upload/*
 .env
 # .gitattributes
 # .gitignore

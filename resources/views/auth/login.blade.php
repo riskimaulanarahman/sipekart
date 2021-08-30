@@ -5,7 +5,7 @@
 @section('content')
 	<!-- begin login-cover -->
 	<div class="login-cover">
-		<div class="login-cover-image" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Kantor_Kelurahan_Baru_Ilir%2C_Balikpapan.jpg/1200px-Kantor_Kelurahan_Baru_Ilir%2C_Balikpapan.jpg)" data-id="login-cover-image"></div>
+		<div class="login-cover-image" style="background-image: url(/assets/img/login-bg/login-bg-13.jpg)" data-id="login-cover-image"></div>
 		<div class="login-cover-bg"></div>
 	</div>
 	<!-- end login-cover -->
@@ -15,12 +15,12 @@
 		<!-- begin brand -->
 		<div class="login-header">
 			<div class="brand">
-				<span class="logo"></span> <b>SIMFEL</b> Balikpapan
-				<small>Sistem Informasi Management File</small>
+				<span class="fa fa-lock"></span> <b>SIMPEK</b> RT
+				<small>Sistem Informasi Manajemen Pelaporan Kinerja Ketua RT</small>
 			</div>
-			<div class="icon">
+			{{-- <div class="icon">
 				<i class="fa fa-lock"></i>
-			</div>
+			</div> --}}
 		</div>
 		<!-- end brand -->
 		<!-- begin login-content -->
@@ -46,7 +46,7 @@
                     @endif
 				</div>
 				<div class="login-buttons">
-					<button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
+					<button type="submit" class="btn btn-danger btn-block btn-lg">Masuk</button>
 				</div>
 			</form>
 		</div>
@@ -56,12 +56,12 @@
 	
 	<!-- begin login-bg -->
 	<ul class="login-bg-list clearfix">
-		<li class="active"><a href="javascript:;" data-click="change-bg" data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Kantor_Kelurahan_Baru_Ilir%2C_Balikpapan.jpg/1200px-Kantor_Kelurahan_Baru_Ilir%2C_Balikpapan.jpg" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Kantor_Kelurahan_Baru_Ilir%2C_Balikpapan.jpg/1200px-Kantor_Kelurahan_Baru_Ilir%2C_Balikpapan.jpg)"></a></li>
+		{{-- <li class="active"><a href="javascript:;" data-click="change-bg" data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Kantor_Kelurahan_Baru_Ilir%2C_Balikpapan.jpg/1200px-Kantor_Kelurahan_Baru_Ilir%2C_Balikpapan.jpg" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Kantor_Kelurahan_Baru_Ilir%2C_Balikpapan.jpg/1200px-Kantor_Kelurahan_Baru_Ilir%2C_Balikpapan.jpg)"></a></li> --}}
 		<li><a href="javascript:;" data-click="change-bg" data-img="/assets/img/login-bg/login-bg-17.jpg" style="background-image: url(/assets/img/login-bg/login-bg-17.jpg)"></a></li>
 		<li><a href="javascript:;" data-click="change-bg" data-img="/assets/img/login-bg/login-bg-16.jpg" style="background-image: url(/assets/img/login-bg/login-bg-16.jpg)"></a></li>
 		<li><a href="javascript:;" data-click="change-bg" data-img="/assets/img/login-bg/login-bg-15.jpg" style="background-image: url(/assets/img/login-bg/login-bg-15.jpg)"></a></li>
 		<li><a href="javascript:;" data-click="change-bg" data-img="/assets/img/login-bg/login-bg-14.jpg" style="background-image: url(/assets/img/login-bg/login-bg-14.jpg)"></a></li>
-		<li><a href="javascript:;" data-click="change-bg" data-img="/assets/img/login-bg/login-bg-13.jpg" style="background-image: url(/assets/img/login-bg/login-bg-13.jpg)"></a></li>
+		<li class="active"><a href="javascript:;" data-click="change-bg" data-img="/assets/img/login-bg/login-bg-13.jpg" style="background-image: url(/assets/img/login-bg/login-bg-13.jpg)"></a></li>
 		<li><a href="javascript:;" data-click="change-bg" data-img="/assets/img/login-bg/login-bg-12.jpg" style="background-image: url(/assets/img/login-bg/login-bg-12.jpg)"></a></li>
 	</ul>
 	<!-- end login-bg -->

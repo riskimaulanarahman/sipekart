@@ -25,126 +25,31 @@ return [
                 'caret' => true,
                 'sub_menu' => [
                     [
-                        'url' => 'javascript:;',
-                        'title' => 'Master Data RT'
+                        'url' => '/kegiatan-laporanrt',
+                        'title' => 'Kinerja Ketua RT',
+                        'route-name' => 'admin.kegiatan-laporanrt'
                     ],
                     [
                         'url' => 'javascript:;',
-                        'title' => 'Master Data Penduduk'
+                        'title' => 'Kematian Warga'
                     ],
                     [
                         'url' => 'javascript:;',
-                        'title' => 'Master Data Pegawai'
-                    ]]
-            ],[
-                'icon' => 'fa fa-file-alt',
-                'title' => 'Master Surat',
-                'url' => 'javascript:;',
-                'caret' => true,
-                'sub_menu' => [
-                    [
-                        'url' => '/surat-masuk',
-                        'title' => 'Surat Masuk',
-                        'route-name' => 'admin.suratmasuk'
-                    ],[
-                        'url' => '/surat-keluar',
-                        'title' => 'Surat Keluar',
-                        'route-name' => 'admin.suratkeluar'
-                    ],[
-                        'url' => '/surat-pelayanan',
-                        'title' => 'Surat Pelayanan',
-                        'route-name' => 'admin.suratpelayanan'
-                    ],[
-                        'url' => '/surat-vital',
-                        'title' => 'Surat Vital',
-                        'route-name' => 'admin.suratvital'
-                    ]]
-            ],[
-                'icon' => 'fa fa-archive',
-                'title' => 'Master Arsip',
-                'url' => 'javascript:;',
-                'caret' => true,
-                'sub_menu' => [
-                    [
-                        'url' => 'javascript:;',
-                        'title' => 'Daftar Arsip Aktif',
-                    ],[
-                        'url' => 'javascript:;',
-                        'title' => 'Daftar Arsip Inaktif',
-                    ],[
-                        'url' => 'javascript:;',
-                        'title' => 'Daftar Arsip Vital',
-                    ],[
-                        'url' => 'javascript:;',
-                        'title' => 'Daftar Arsip Pelayanan',
-                    ]]
-        ],[
-            'icon' => 'fa fa-file',
-            'title' => 'SOP',
-            'url' => 'javascript:;',
-        ],[
-                'icon' => 'fa fa-archive',
-                'title' => 'Tabel Referensi',
-                'url' => 'javascript:;',
-                'caret' => true,
-                'sub_menu' => [
-                    [
-                        'url' => 'javascript:;',
-                        'title' => 'Doc Riwayat Kepegawaian',
-                        'sub_menu' => [[
-                            'url' => 'javascript:;',
-                            'title' => 'KP4',
-    
-                        ],[
-                            'url' => 'javascript:;',
-                            'title' => 'KGB',
-                        ],[
-                            'url' => 'javascript:;',
-                            'title' => 'Kenaikan Pangkat',
-                        ],[
-                            'url' => 'javascript:;',
-                            'title' => 'SPK',
-                        ],[
-                            'url' => 'javascript:;',
-                            'title' => 'SPK Non PNS',
-                        ],[
-                            'url' => 'javascript:;',
-                            'title' => 'Struktur Kelurahan',
-                        ]]
-                    ],[
-                        'url' => 'javascript:;',
-                        'title' => 'Doc Laporan Keuangan',
-                        'sub_menu' => [[
-                            'url' => 'javascript:;',
-                            'title' => 'Laporan Keuangan Kasi Pemerintahan & PP',
-    
-                        ],[
-                            'url' => 'javascript:;',
-                            'title' => 'Laporan Keuangan Kasi Permas',
-    
-                        ],[
-                            'url' => 'javascript:;',
-                            'title' => 'Laporan Keuangan Kasi Tramtib & LH',
-    
-                        ]]
-                    ]
+                        'title' => 'Demografi RT'
+                    ],
                 ]
         ],[
-            'icon' => 'fa fa-file',
-            'title' => 'Cetak Rekap',
+            'icon' => 'fa fa-folder',
+            'title' => 'Table Refrensi',
             'url' => 'javascript:;',
             'caret' => true,
             'sub_menu' => [
                 [
-                    'url' => 'javascript:;',
-                    'title' => 'Cetak Rekap Data Master'
-                ],[
-                    'url' => 'javascript:;',
-                    'title' => 'Cetak Rekap Dokumen Pegawai'
-                ],[
-                    'url' => 'javascript:;',
-                    'title' => 'Cetak Rekap Dokumen Keuangan'
-                ]]
+                    'url' => '/kegiatan-rt',
+                    'title' => 'Daftar Kegiatan RT',
+                    'route-name' => 'admin.kegiatan-rt'
+                ],
+            ]
         ],[
             'icon' => 'fa fa-users',
             'title' => 'Kelola User',

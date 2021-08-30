@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\SuratMasuk;
-use App\SuratKeluar;
-use App\SuratPelayanan;
+use App\KegiatanLaporan;
 
 class BerkasController extends Controller
 {
@@ -48,37 +46,23 @@ class BerkasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id,$module)
+    public function update(Request $request)
     {
+        try {
 
-        $file = $request->file('file');
-        $nama_file = $module."_".time()."_".$file->getClientOriginalName();
-        $tujuan_upload = 'upload';
-        $file->move($tujuan_upload,$nama_file);
-        
-        if($module == 'suratmasuk') {
+            // if($file = $request->hasFile('file')) {
+                $module = "kegiatanrt";
+                $file = $request->file('myFile');
+                $nama_file = $module."_".time()."_".$file->getClientOriginalName();
+                $tujuan_upload = 'upload';
+                $file->move($tujuan_upload,$nama_file);
+            
+                return $nama_file;
+            // }
+        } catch (\Exception $e){
 
-            $data = SuratMasuk::findOrFail($id);
-            $data->update([
-                'lampiran' => $nama_file
-            ]);
-            
-        } else if($module == 'suratkeluar') {
-            
-            $data = SuratKeluar::findOrFail($id);
-            $data->update([
-                'lampiran' => $nama_file
-            ]);
-            
-        } else if($module == 'suratpelayanan') {
-            
-            $data = SuratPelayanan::findOrFail($id);
-            $data->update([
-                'lampiran' => $nama_file
-            ]);
-            
+            return response()->json(["status" => "error", "message" => $e->getMessage()]);
         }
-        
  
     }
 
