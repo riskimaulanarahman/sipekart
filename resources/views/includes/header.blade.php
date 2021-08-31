@@ -85,7 +85,7 @@
 			<input type="hidden" class="roleuser" value="{{Auth::user()->role}}">
 			<div class="dropdown-menu dropdown-menu-right">
 				{{-- <a href="javascript:;" class="dropdown-item">Edit Profile</a> --}}
-				<a href="javascript:;" class="dropdown-item"><span class="badge badge-success pull-right">{{Auth::user()->nama_lengkap}}</span> Nama</a>
+				<a href="javascript:;" class="dropdown-item"><span class="badge badge-success">{{Auth::user()->nama_lengkap}}</span></a>
 				<a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">{{Auth::user()->role}}</span> Role</a>
 				<div class="dropdown-divider"></div>
 				<a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>

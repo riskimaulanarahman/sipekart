@@ -25,7 +25,9 @@
 				@if(Auth::user()->role == "admin")
 				<div class="row">
 					<div class="col-md-3">
-						<select name="bulan" id="bulan" class="form-control">
+						<label for="bulan">Bulan : </label>
+						<div id="bulan"></div>
+						{{-- <select name="bulan" id="bulan" class="form-control">
 							<option value="">-- Pilih Bulan --</option>
 							<option value="01">01</option>
 							<option value="02">02</option>
@@ -39,10 +41,12 @@
 							<option value="10">10</option>
 							<option value="11">11</option>
 							<option value="12">12</option>
-						</select>
+						</select> --}}
 					</div>
 					<div class="col-md-3">
-						<select name="tahun" id="tahun" class="form-control">
+						<label for="tahun">Tahun : </label>
+						<div id="tahun"></div>
+						{{-- <select name="tahun" id="tahun" class="form-control">
 							<option value="">-- Pilih Tahun --</option>
 							<option value="2020">2020</option>
 							<option value="2021">2021</option>
@@ -56,10 +60,12 @@
 							<option value="2030">2030</option>
 							<option value="2031">2031</option>
 							<option value="2032">2032</option>
-						</select>
+						</select> --}}
 					</div>
 					<div class="col-md-3">
-						<select name="getrt" id="getrt" class="form-control"></select>
+						<label for="rt">Nomor RT : </label>
+						<div id="rt"></div>
+						{{-- <select name="getrt" id="getrt" class="form-control"></select> --}}
 					</div>
 					<div class="col-md-3">
 						<button id="print-laporan" class="btn btn-danger">Print Laporan</button>
@@ -79,18 +85,20 @@
 @push('scripts')
 <script src="/assets/js/kegiatan-laporanrt.js?n=1"></script>
 <script>
-	$.getJSON('/api/list-rt',function(item){
-		$('#getrt').html('');
+	// $.getJSON('/api/list-rt',function(item){
+	// 	$('#getrt').html('');
 
-		$('#getrt').append("<option value=''> -- Pilih Nomor RT -- </option>")
+	// 	$('#getrt').append("<option value=''> -- Pilih Nomor RT -- </option>")
 
-		$.each(item,function(x,y){
-			$('#getrt').append("<option value='"+y.nomor_rt+"'> "+y.nomor_rt+" </option>");
-		})
-	})
+	// 	$.each(item,function(x,y){
+	// 		$('#getrt').append("<option value='"+y.nomor_rt+"'> "+y.nomor_rt+" </option>");
+	// 	})
+	// })
 
-	$('#print-laporan').on("click",function(){
-		alert('fitur belum tersedia')
-	})
+	// $('#print-laporan').on("click",function(){
+	// 	// alert('fitur belum tersedia')
+	// 	var vbulan = $('#bulan').val();
+	// 	alert(vbulan)
+	// })
 </script>
 @endpush

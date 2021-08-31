@@ -99,15 +99,15 @@ class KegiatanLaporanController extends Controller
         $fixed = date('Y-m-d', strtotime(substr($date,0,10)));
 
         $requestData = $request->all();
+        $now = Carbon::now();
         if($date) {
             $requestData['tanggal'] = $fixed;
+            $hari = Carbon::createFromFormat('Y-m-d', $fixed)->format('d');
+            $bulan = Carbon::createFromFormat('Y-m-d', $fixed)->format('m');
+            $tahun = Carbon::createFromFormat('Y-m-d', $fixed)->format('Y');
+            $requestData['bulan'] = $bulan;
+            $requestData['tahun'] = $tahun;
         }
-        $now = Carbon::now();
-        $hari = Carbon::createFromFormat('Y-m-d', $fixed)->format('d');
-        $bulan = Carbon::createFromFormat('Y-m-d', $fixed)->format('m');
-        $tahun = Carbon::createFromFormat('Y-m-d', $fixed)->format('Y');
-        $requestData['bulan'] = $bulan;
-        $requestData['tahun'] = $tahun;
         
         try {
        

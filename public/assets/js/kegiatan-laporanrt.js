@@ -28,6 +28,55 @@ function moveEditColumnToLeft(dataGrid) {
     });
 }
 
+date = new Date();
+lala = new Date(date.getFullYear(),date.getMonth()-1,0);
+console.log(lala);
+
+var bulans = ["All",01,02,03,04,05,06,07,08,09,10,11,12];
+var tahuns = ["All",2021,2022,2023,2024,2025,2026,2027,2028,2029,2030];
+var rts = ["All",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40];
+
+$("#bulan").dxSelectBox({
+    dataSource: bulans,
+    value: bulans[0],
+    onValueChanged: function(data) {
+        if (data.value == "All")
+            dataGrid.clearFilter();
+        else
+            dataGrid.filter(["bulan", "=", data.value]);
+    }
+});
+
+$("#tahun").dxSelectBox({
+    dataSource: tahuns,
+    value: tahuns[0],
+    onValueChanged: function(data) {
+        if (data.value == "All")
+            dataGrid.clearFilter();
+        else
+            dataGrid.filter(["tahun", "=", data.value]);
+    }
+});
+
+$("#rt").dxSelectBox({
+    dataSource: rts,
+    value: rts[0],
+    onValueChanged: function(data) {
+        if (data.value == "All")
+            dataGrid.clearFilter();
+        else
+            dataGrid.filter(["users.id_rt", "=", data.value]);
+    }
+});
+
+$('#print-laporan').on("click",function(){
+    var vbulans = $("#bulan").dxSelectBox('instance').option('value');
+    var vtahuns = $("#tahun").dxSelectBox('instance').option('value');
+    var vrts = $("#rt").dxSelectBox('instance').option('value');
+    console.log(vbulans + " | " + vtahuns + " | " + vrts);
+})
+
+
 // attribute
 var dataGrid = $("#kegiatan-laporanrt").dxDataGrid({    
     dataSource: store,
@@ -156,10 +205,16 @@ var dataGrid = $("#kegiatan-laporanrt").dxDataGrid({
         },
         { 
             dataField: "tanggal",
+            editorType: "dxDateBox",
             validationRules: [
                 { type: "required" }
             ],
             dataType:"date", format:"dd-MM-yyyy",displayFormat: "dd-MM-yyyy",
+            editorOptions: {
+                // max: "2021-09-20"
+                displayFormat: "yyyy-MM-dd",
+                min: lala
+            }
         },
         { 
             dataField: "bulan",
@@ -180,21 +235,6 @@ var dataGrid = $("#kegiatan-laporanrt").dxDataGrid({
             allowFiltering: false,
             allowSorting: false,
             cellTemplate: cellTemplate,
-            // cellTemplate: function (container,options) {
-            //     if(options.value!=""){
-            //         $("<div />").dxButton({
-            //             icon: "download",
-            //             stylingMode: "contained",
-            //             type: "success",
-            //             target: "_blank",
-            //             width: 50,
-            //             height: 25,
-            //             onClick: function (e) {
-            //                 window.open('upload/'+options.value, '_blank');
-            //             }
-            //         }).appendTo(container);
-            //     }
-            // },
             editCellTemplate: editCellTemplate
         }
        
