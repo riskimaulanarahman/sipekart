@@ -127,7 +127,9 @@
                 dataField: "role",
                 editorType: "dxSelectBox",
                 validationRules: [
-                    { type: "required" }
+                    { 
+                        type: "required" 
+                    }
                 ],
                 editorOptions: {
                     dataSource: RoleType,  
@@ -138,9 +140,9 @@
             { 
                 dataField: "id_rt",
                 editorType: "dxSelectBox",
-                validationRules: [
-                    { type: "required" }
-                ],
+                // validationRules: [
+                //     { type: "required" }
+                // ],
                 lookup: {
                     dataSource: listRT,  
                     valueExpr: 'id',

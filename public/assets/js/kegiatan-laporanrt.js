@@ -47,9 +47,9 @@ var dataGrid = $("#kegiatan-laporanrt").dxDataGrid({
     editing: {
         useIcons:true,
         mode: "popup",
-        allowAdding: (role == "operator")?true:false,
-        allowUpdating: true,
-        allowDeleting: (role == "operator")?true:false,
+        allowAdding: (role == "admin" || role == "operator")?true:false,
+        allowUpdating: (role == "admin" || role == "operator")?true:false,
+        allowDeleting: (role == "admin" || role == "operator")?true:false,
         popup: {
             title: "Kegiatan RT",
             showTitle: true,

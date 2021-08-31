@@ -37,6 +37,10 @@ class LoginUserController extends Controller
     {
 
         try {
+            $request->validate([
+                'id_rt' => 'required',
+            ]);
+
             $checkuser = User::where('id_rt',$request->id_rt)->count();
 
             if($checkuser==0) {

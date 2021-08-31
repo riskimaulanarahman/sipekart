@@ -51,14 +51,23 @@ class KegiatanLaporanController extends Controller
         if($date) {
             $requestData['tanggal'] = $fixed;
         }
+        $now = Carbon::now();
+        $bulan = Carbon::createFromFormat('Y-m-d', $fixed)->format('m');
+        $tahun = Carbon::createFromFormat('Y-m-d', $fixed)->format('Y');
         $requestData['id_users'] = $user->id;
-        $requestData['bulan'] = Carbon::createFromFormat('Y-m-d', $fixed)->format('m');
-        $requestData['tahun'] = Carbon::createFromFormat('Y-m-d', $fixed)->format('Y');
+        $requestData['bulan'] = $bulan;
+        $requestData['tahun'] = $tahun;
  
         try {
-            KegiatanLaporan::create($requestData);
 
-            return response()->json(["status" => "success", "message" => "Berhasil Menambahkan Data"]);
+            if($bulan !== $now->format('m')) {
+                return response()->json(["status" => "error", "message" => "Gagal Menambahkan Data, Tanggal Kadaluarsa"]);
+            } else {
+
+                KegiatanLaporan::create($requestData);
+                
+                return response()->json(["status" => "success", "message" => "Berhasil Menambahkan Data"]);
+            }
 
         } catch (\Exception $e){
 
@@ -93,12 +102,24 @@ class KegiatanLaporanController extends Controller
         if($date) {
             $requestData['tanggal'] = $fixed;
         }
+        $now = Carbon::now();
+        $hari = Carbon::createFromFormat('Y-m-d', $fixed)->format('d');
+        $bulan = Carbon::createFromFormat('Y-m-d', $fixed)->format('m');
+        $tahun = Carbon::createFromFormat('Y-m-d', $fixed)->format('Y');
+        $requestData['bulan'] = $bulan;
+        $requestData['tahun'] = $tahun;
         
         try {
+       
             $data = KegiatanLaporan::findOrFail($id);
-            $data->update($requestData);
+            if($now->format('m') !== $data->bulan) {
+                return response()->json(["status" => "error", "message" => "Gagal Ubah Data, Tanggal Kadaluarsa"]);
+            } else {              
+                $data->update($requestData);
+                return response()->json(["status" => "success", "message" => "Berhasil Ubah Data"]);
+            }
+              
 
-            return response()->json(["status" => "success", "message" => "Berhasil Ubah Data"]);
 
         } catch (\Exception $e){
 
@@ -114,10 +135,16 @@ class KegiatanLaporanController extends Controller
      */
     public function destroy($id)
     {
+        $now = Carbon::now();
         try {
-            $data = KegiatanLaporan::find($id)->delete();
+            $data = KegiatanLaporan::find($id);
+            if($now->format('m') !== $data->bulan) {
+                return response()->json(["status" => "error", "message" => "Gagal Hapus Data, Tanggal Kadaluarsa"]);
+            } else {  
+                $data->delete();
+                return response()->json(["status" => "success", "message" => "Berhasil Hapus Data"]);
+            }
 
-            return response()->json(["status" => "success", "message" => "Berhasil Hapus Data"]);
 
         } catch (\Exception $e){
 
