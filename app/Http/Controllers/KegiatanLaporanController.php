@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use DB;
+use PDF;
 use Illuminate\Support\Carbon;
 
 use App\KegiatanLaporan;
+use App\User;
 
 class KegiatanLaporanController extends Controller
 {
@@ -158,5 +161,39 @@ class KegiatanLaporanController extends Controller
 
             return response()->json(["status" => "error", "message" => $e->getMessage()]);
         }
+    }
+
+    public function cetakkegiatan($bulan,$tahun,$rt)
+    {
+        $bulans = ['','Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember',''];
+        $getrt = DB::table('rt')->where('nomor_rt',$rt)->first();
+
+        if($getrt) {
+            $getuser = DB::table('users')->where('id_rt',$getrt->nomor_rt)->first();
+        } else {
+            return 404;
+        }
+
+        if($getuser) {            
+            $data = KegiatanLaporan::with('kegiatans')->where('bulan',(int)$bulan)
+            ->where('tahun',$tahun)
+            ->where('id_users',$getuser->id)->get();
+            
+            // return $data;
+
+            $pdf = PDF::loadview('pdfkegiatan',[
+                'data'=>$data,
+                'rt'=>$getrt,
+                'namart'=>$getuser->nama_lengkap,
+                'bulan'=>$bulans[$bulan],
+            ])->setPaper('a4', 'landscape');
+            return $pdf->stream();
+
+        } else {
+            return 404;
+        }
+
+
+       
     }
 }

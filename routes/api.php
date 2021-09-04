@@ -17,11 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//master data surat
-// Route::apiResource('/surat-masuk','masterdatasurat\suratmasuk\SuratmasukController');
-// Route::apiResource('/surat-keluar','masterdatasurat\suratkeluar\SuratkeluarController');
-// Route::apiResource('/surat-pelayanan','masterdatasurat\suratpelayanan\SuratpelayananController');
-// Route::apiResource('/surat-vital','masterdatasurat\suratpelayanan\SuratvitalController');
 Route::post('/upload-berkas','BerkasController@update')->name('uploadberkas');
 
 //master user
@@ -30,3 +25,6 @@ Route::apiResource('/master-user','masteruser\LoginUserController');
 //list
 Route::post('list-kegiatan','API\ListController@listKegiatan');
 Route::get('list-rt','API\ListController@listRT');
+
+//cetak PDF
+Route::get('/cetak-kegiatan/{bulan}/{tahun}/{rt}','KegiatanLaporanController@cetakkegiatan')->name('cetak-kegiatan');

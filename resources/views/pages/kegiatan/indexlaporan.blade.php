@@ -71,6 +71,7 @@
 						<button id="print-laporan" class="btn btn-danger">Print Laporan</button>
 					</div>
 				</div>
+				<hr>
 				@endif
 				<div id="popup"></div>
 

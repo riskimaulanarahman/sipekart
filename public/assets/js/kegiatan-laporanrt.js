@@ -36,25 +36,45 @@ var bulans = ["All",01,02,03,04,05,06,07,08,09,10,11,12];
 var tahuns = ["All",2021,2022,2023,2024,2025,2026,2027,2028,2029,2030];
 var rts = ["All",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40];
 
-$("#bulan").dxSelectBox({
+var optbulan = $("#bulan").dxSelectBox({
     dataSource: bulans,
     value: bulans[0],
     onValueChanged: function(data) {
+        var getTahun = $("#tahun").dxSelectBox("instance");    // access a widget  
+        var resTahun = getTahun.option('value');   
+        var getRT = $("#rt").dxSelectBox("instance");    // access a widget  
+        var resRT = getRT.option('value');
+
         if (data.value == "All")
             dataGrid.clearFilter();
         else
-            dataGrid.filter(["bulan", "=", data.value]);
+            dataGrid.filter(
+                ["bulan", "=", data.value],
+                ["tahun", "=", resTahun],
+                ["users.id_rt", "=", resRT]
+            );
     }
 });
+
+ 
 
 $("#tahun").dxSelectBox({
     dataSource: tahuns,
     value: tahuns[0],
     onValueChanged: function(data) {
+        var getBulan = $("#bulan").dxSelectBox("instance");    // access a widget  
+        var resBulan = getBulan.option('value');   
+        var getRT = $("#rt").dxSelectBox("instance");    // access a widget  
+        var resRT = getRT.option('value'); 
+        
         if (data.value == "All")
             dataGrid.clearFilter();
         else
-            dataGrid.filter(["tahun", "=", data.value]);
+            dataGrid.filter(
+                ["bulan", "=", resBulan],
+                ["tahun", "=", data.value],
+                ["users.id_rt", "=", resRT]
+            );
     }
 });
 
@@ -62,10 +82,19 @@ $("#rt").dxSelectBox({
     dataSource: rts,
     value: rts[0],
     onValueChanged: function(data) {
+        var getBulan = $("#bulan").dxSelectBox("instance");    // access a widget  
+        var resBulan = getBulan.option('value');   
+        var getTahun = $("#tahun").dxSelectBox("instance");    // access a widget  
+        var resTahun = getTahun.option('value'); 
+        
         if (data.value == "All")
             dataGrid.clearFilter();
         else
-            dataGrid.filter(["users.id_rt", "=", data.value]);
+            dataGrid.filter(
+                ["bulan", "=", resBulan],
+                ["tahun", "=", resTahun],
+                ["users.id_rt", "=", data.value]
+            );
     }
 });
 
@@ -74,6 +103,14 @@ $('#print-laporan').on("click",function(){
     var vtahuns = $("#tahun").dxSelectBox('instance').option('value');
     var vrts = $("#rt").dxSelectBox('instance').option('value');
     console.log(vbulans + " | " + vtahuns + " | " + vrts);
+    $.get("api/cetak-kegiatan/"+vbulans+"/"+vtahuns+"/"+vrts,function(data){
+        if(data!=="404") {
+            window.open("api/cetak-kegiatan/"+vbulans+"/"+vtahuns+"/"+vrts,"_blank");
+        }  else {
+            console.log(data);
+            alert('data tidak ditemukan');
+        }
+    })
 })
 
 

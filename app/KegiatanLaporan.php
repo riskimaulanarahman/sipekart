@@ -15,4 +15,9 @@ class KegiatanLaporan extends Model
     {
         return $this->belongsTo('App\User','id_users','id');
     }
+    
+    public function kegiatans()
+    {
+        return $this->belongsTo('App\Kegiatan','id_kegiatan','id');
+    }
 }
