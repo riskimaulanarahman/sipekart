@@ -168,8 +168,11 @@ class KegiatanLaporanController extends Controller
         $bulans = ['','Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember',''];
         $getrt = DB::table('rt')->where('nomor_rt',$rt)->first();
 
+        
+        
         if($getrt) {
             $getuser = DB::table('users')->where('id_rt',$getrt->nomor_rt)->first();
+            $getadmin = DB::table('users')->where('role','admin')->first();
         } else {
             return 404;
         }
@@ -185,6 +188,7 @@ class KegiatanLaporanController extends Controller
                 'data'=>$data,
                 'rt'=>$getrt,
                 'namart'=>$getuser->nama_lengkap,
+                'namaadmin'=>$getadmin->nama_lengkap,
                 'bulan'=>$bulans[$bulan],
             ])->setPaper('a4', 'landscape');
             return $pdf->stream();

@@ -64,7 +64,9 @@
 
         <div style="font-size: 10px;">
 			<label>Mengetahui,</label><br>
-			<label>LURAH KARANG JATI</label><br>
+			<label>Kepala Seksi Pemerintahan & Pelayanan Publik</label>
+            <br><br><br><br><br><br>
+			<label>{{$namaadmin}}</label><br>
 		</div>
 		<div style="font-size: 10px; float:right; padding-right: 50px;">
 			<label>Balikpapan,.........................</label><br>
