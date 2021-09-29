@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'id',
 
     /*
     |--------------------------------------------------------------------------
@@ -102,6 +102,8 @@ return [
     | will not be safe. Please do this before deploying an application!
     |
     */
+    'faker_locale' => 'id_ID',
+
 
     'key' => env('APP_KEY'),
 

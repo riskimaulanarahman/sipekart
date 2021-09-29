@@ -4,12 +4,15 @@
 
 @section('content')
 
+@php
+    use Illuminate\Support\Carbon;
 
+@endphp
 		<!-- begin panel -->
 		<div class="panel panel-info">
 			<!-- begin panel-heading -->
 			<div class="panel-heading">
-				<h4 class="panel-title">Kegiatan RT </h4>
+				<h4 class="panel-title">Kegiatan RT {{ Carbon::now()->format('l, d F y') }} </h4>
 				<div class="panel-heading-btn">
 					<!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a> -->
 					{{-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success reloadalltabel"

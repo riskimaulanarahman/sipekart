@@ -1,3 +1,6 @@
+@php
+    use Illuminate\Support\Carbon;
+@endphp
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +54,14 @@
                 @foreach($data as $p)
                 <tr>
                     <td class="text-center">{{ $no++ }}</td>
-                    <td>{{$p->tanggal}}</td>
+                    {{-- <td>{{$p->tanggal}}</td> --}}
+                    {{-- <td> --}}
+                        <?php 
+                    // setlocale(LC_ALL, 'id-ID', 'id_ID');
+                    // echo strftime("%A, %d %B %Y", strtotime($p->tanggal)) . "\n";
+                    ?>
+                    {{-- </td> --}}
+                    <td>{{ Carbon::parse($p->tanggal)->translatedFormat('l, d F Y') }}</td>
                     <td>{{$p->kegiatans->nama_kegiatan}}</td>
                     <td>{{$p->keterangan}}</td>
                 </tr>
