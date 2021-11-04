@@ -9,17 +9,33 @@
 </head>
 <body>
 	<style type="text/css">
-		table tr td,
-		table tr th{
+		.tbl-kegiatan tr td,
+		.tbl-kegiatan tr th{
 			font-size: 9px;
             padding: 2px;
             border: 1px solid black;
 		}
-        table {
+        .tbl-kegiatan {
             margin-top: 10px;
             margin-bottom: 20px;
             width: 100%;
             border-collapse: collapse;
+        }
+
+        /* .tbl-noborder tr td,
+		.tbl-noborder tr th{
+			font-size: 9px;
+            padding: 2px;
+		} */
+
+        .table-noborder {
+			font-size: 9px;
+            
+            margin-top: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            border-collapse: collapse;
+            /* border: none !important; */
         }
 	</style>
 	<center>
@@ -40,7 +56,7 @@
 	</div>
     <div class="row">
         {{-- <table class="table table-bordered table-td-valign-middle"> --}}
-        <table>
+        <table class="tbl-kegiatan">
             <thead>
                 <tr>
                     <th width="1%">NO</th>
@@ -72,7 +88,25 @@
 
     <div class="row">
 
-        <div style="font-size: 10px;">
+        <table class="table-noborder" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>Mengetahui,</td>
+                <td></td>
+                <td style="float:right;width:10%;">Balikpapan,.........................</td>
+            </tr>
+            <tr>
+                <td>Kepala Seksi Pemerintahan & Pelayanan Publik<br><br><br><br><br><br></td>
+                <td></td>
+                <td style="float:right;width:10%;">KETUA RT {{$rt->nomor_rt}}<br><br><br><br><br><br></td>
+            </tr>
+            <tr>
+                <td>{{$namaadmin}}</td>
+                <td></td>
+                <td style="float:right;width:10%;">{{$namart}}</td>
+            </tr>
+        </table>
+
+        {{-- <div style="font-size: 10px;">
 			<label>Mengetahui,</label><br>
 			<label>Kepala Seksi Pemerintahan & Pelayanan Publik</label>
             <br><br><br><br><br><br>
@@ -83,7 +117,7 @@
 			<label>KETUA RT {{$rt->nomor_rt}}</label>
             <br><br><br><br><br><br>
 			<label>{{$namart}}</label><br>
-		</div>
+		</div> --}}
 
     </div>
 
