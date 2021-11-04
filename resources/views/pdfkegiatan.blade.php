@@ -17,9 +17,13 @@
 		}
         .tbl-kegiatan {
             margin-top: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             width: 100%;
             border-collapse: collapse;
+        }
+        
+        .break {
+            page-break-inside: avoid;
         }
 
         /* .tbl-noborder tr td,
@@ -32,10 +36,17 @@
 			font-size: 9px;
             
             margin-top: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             width: 100%;
             border-collapse: collapse;
+            /*page-break-inside: avoid;*/
             /* border: none !important; */
+        }
+
+        .floatright {
+            /* float:right;
+            width:10%; */
+            text-align: right;
         }
 	</style>
 	<center>
@@ -82,27 +93,35 @@
                     <td>{{$p->keterangan}}</td>
                 </tr>
                 @endforeach
+                @for ($i = 0; $i < 14; $i++)
+                <tr>
+                    <td>{{$i}}</td>
+                    <td>a</td>
+                    <td>a</td>
+                    <td>a</td>
+                </tr>
+                @endfor
+                
             </tbody>
         </table>
     </div>
-
     <div class="row">
 
-        <table class="table-noborder" cellspacing="0" cellpadding="0">
+        <table class="table-noborder break">
             <tr>
                 <td>Mengetahui,</td>
                 <td></td>
-                <td style="float:right;width:10%;">Balikpapan,.........................</td>
+                <td class="floatright">Balikpapan,.........................</td>
             </tr>
             <tr>
                 <td>Kepala Seksi Pemerintahan & Pelayanan Publik<br><br><br><br><br><br></td>
                 <td></td>
-                <td style="float:right;width:10%;">KETUA RT {{$rt->nomor_rt}}<br><br><br><br><br><br></td>
+                <td class="floatright">KETUA RT {{$rt->nomor_rt}}<br><br><br><br><br><br></td>
             </tr>
             <tr>
                 <td>{{$namaadmin}}</td>
                 <td></td>
-                <td style="float:right;width:10%;">{{$namart}}</td>
+                <td class="floatright">{{$namart}}</td>
             </tr>
         </table>
 

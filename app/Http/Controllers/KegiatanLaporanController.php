@@ -193,6 +193,14 @@ class KegiatanLaporanController extends Controller
             ])->setPaper('a4', 'landscape');
             return $pdf->stream();
 
+            // return view('pdfkegiatan',[
+            //     'data'=>$data,
+            //     'rt'=>$getrt,
+            //     'namart'=>$getuser->nama_lengkap,
+            //     'namaadmin'=>$getadmin->nama_lengkap,
+            //     'bulan'=>$bulans[$bulan],
+            // ]);
+
         } else {
             return 404;
         }
