@@ -93,14 +93,14 @@
                     <td>{{$p->keterangan}}</td>
                 </tr>
                 @endforeach
-                @for ($i = 0; $i < 14; $i++)
+                {{-- @for ($i = 0; $i < 14; $i++)
                 <tr>
                     <td>{{$i}}</td>
                     <td>a</td>
                     <td>a</td>
                     <td>a</td>
                 </tr>
-                @endfor
+                @endfor --}}
                 
             </tbody>
         </table>
