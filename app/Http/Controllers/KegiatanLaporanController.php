@@ -180,7 +180,9 @@ class KegiatanLaporanController extends Controller
         if($getuser) {            
             $data = KegiatanLaporan::with('kegiatans')->where('bulan',(int)$bulan)
             ->where('tahun',$tahun)
-            ->where('id_users',$getuser->id)->get();
+            ->where('id_users',$getuser->id)
+            ->orderBy('tanggal')
+            ->get();
             
             // return $data;
 
