@@ -186,6 +186,9 @@ var dataGrid = $("#kegiatan-laporanrt").dxDataGrid({
                 colSpan: 2,
                 items: [
                     {
+                        dataField: "users.id_rt",
+                    },
+                    {
                         dataField: "id_kegiatan",
                     },
                     {
