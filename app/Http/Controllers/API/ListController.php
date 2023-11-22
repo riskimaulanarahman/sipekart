@@ -18,7 +18,7 @@ class ListController extends Controller
 {
 
     public function listKegiatan() {
-        return DB::table('kegiatans')->select('id','nama_kegiatan')->get();
+        return DB::table('kegiatans')->select('id','nama_kegiatan')->where('status',1)->get();
     }
 
     public function listRT() {

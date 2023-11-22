@@ -78,6 +78,11 @@ var dataGrid = $("#kegiatan-rt").dxDataGrid({
                 }
             ]
         },
+        {
+            caption: "isActive ?",
+            dataField: "status",
+            dataType: "boolean"
+        },
        
     ],
     export: {

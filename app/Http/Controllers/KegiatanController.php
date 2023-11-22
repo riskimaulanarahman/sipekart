@@ -34,6 +34,7 @@ class KegiatanController extends Controller
     public function store(Request $request)
     {
         $requestData = $request->all();
+        ($request->status == 'false') ? $requestData['status'] = 0 : $requestData['status'] = 1;
  
         try {
             Kegiatan::create($requestData);
@@ -67,6 +68,7 @@ class KegiatanController extends Controller
     public function update(Request $request, $id)
     {
         $requestData = $request->all();
+        ($request->status == 'false') ? $requestData['status'] = 0 : $requestData['status'] = 1;
         
         try {
             $data = Kegiatan::findOrFail($id);

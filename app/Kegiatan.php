@@ -10,4 +10,8 @@ class Kegiatan extends Model
     use HasFactory;
 
     protected $guarded = ['id']; 
+
+    protected $cast = [
+        'status' => 'boolean'
+    ];
 }
