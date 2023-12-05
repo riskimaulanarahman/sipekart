@@ -48,28 +48,42 @@ class KegiatanLaporanController extends Controller
         $user = Auth::user();
 
         $date = $request->tanggal;
+        if($user->role == 'admin') {
+            $nort = $request['users']['id_rt'];
+        } else {
+            $nort = $user->id_rt;
+        }
         $fixed = date('Y-m-d', strtotime(substr($date,0,10)));
 
         $requestData = $request->all();
         if($date) {
             $requestData['tanggal'] = $fixed;
         }
+        if($nort) {
+            $getuser = User::where('id_rt',$nort)->first();
+            $requestData['id_users'] = $getuser->id;
+        }
         $now = Carbon::now();
         $bulan = Carbon::createFromFormat('Y-m-d', $fixed)->format('m');
         $tahun = Carbon::createFromFormat('Y-m-d', $fixed)->format('Y');
-        $requestData['id_users'] = $user->id;
+//         $requestData['id_users'] = $user->id;
         $requestData['bulan'] = $bulan;
         $requestData['tahun'] = $tahun;
  
         try {
-
-            if($bulan !== $now->format('m')) {
-                return response()->json(["status" => "error", "message" => "Gagal Menambahkan Data, Tanggal Kadaluarsa"]);
-            } else {
-
+            if($user->role == 'admin') {
                 KegiatanLaporan::create($requestData);
                 
                 return response()->json(["status" => "success", "message" => "Berhasil Menambahkan Data"]);
+            } else {
+                if($bulan !== $now->format('m')) {
+                    return response()->json(["status" => "error", "message" => "Gagal Menambahkan Data, Tanggal Kadaluarsa"]);
+                } else {
+
+                    KegiatanLaporan::create($requestData);
+
+                    return response()->json(["status" => "success", "message" => "Berhasil Menambahkan Data"]);
+                }
             }
 
         } catch (\Exception $e){
@@ -98,10 +112,29 @@ class KegiatanLaporanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user();
+        
         $date = $request->tanggal;
+        if(isset($request['users']['id_rt'])) {
+            if($user->role == 'admin') {
+                $nort = $request['users']['id_rt'];
+            } else {
+                $nort = $user->id_rt;
+            }
+        } else {
+            $datani = KegiatanLaporan::findOrFail($id);
+            $getuserni = User::where('id',$datani->id_users)->first();
+            $nort = $getuserni->id_rt;
+        }
         $fixed = date('Y-m-d', strtotime(substr($date,0,10)));
-
+        
         $requestData = $request->all();
+        
+        if($nort) {
+            $getuser = User::where('id_rt',$nort)->first();
+            $requestData['id_users'] = $getuser->id;
+        }
+        
         $now = Carbon::now();
         if($date) {
             $requestData['tanggal'] = $fixed;
@@ -115,19 +148,24 @@ class KegiatanLaporanController extends Controller
         try {
        
             $data = KegiatanLaporan::findOrFail($id);
-            if($now->format('m') !== $data->bulan) {
-                return response()->json(["status" => "error", "message" => "Gagal Ubah Data, Tanggal Kadaluarsa"]);
-            } else {
-                if(!empty($date)) {
-                    if($bulan !== $now->format('m')){
-                        return response()->json(["status" => "error", "message" => "Gagal Ubah Data, Tanggal Kadaluarsa"]);
-                    } else {
-                        $data->update($requestData);
-                        return response()->json(["status" => "success", "message" => "Berhasil Ubah Data"]);
-                    }
-                }
+            if($user->role == 'admin') {
                 $data->update($requestData);
-                return response()->json(["status" => "success", "message" => "Berhasil Ubah Data"]);            
+                return response()->json(["status" => "success", "message" => "Berhasil Ubah Data"]);
+            } else {
+                if($now->format('m') !== $data->bulan) {
+                    return response()->json(["status" => "error", "message" => "Gagal Ubah Data, Tanggal Kadaluarsa"]);
+                } else {
+                    if(!empty($date)) {
+                        if($bulan !== $now->format('m')){
+                            return response()->json(["status" => "error", "message" => "Gagal Ubah Data, Tanggal Kadaluarsa"]);
+                        } else {
+                            $data->update($requestData);
+                            return response()->json(["status" => "success", "message" => "Berhasil Ubah Data"]);
+                        }
+                    }
+                    $data->update($requestData);
+                    return response()->json(["status" => "success", "message" => "Berhasil Ubah Data"]);            
+                }
             }
               
 

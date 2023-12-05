@@ -187,6 +187,7 @@ var dataGrid = $("#kegiatan-laporanrt").dxDataGrid({
                 items: [
                     {
                         dataField: "users.id_rt",
+                        visible: (role=="admin")?true:false,
                     },
                     {
                         dataField: "id_kegiatan",
@@ -226,11 +227,17 @@ var dataGrid = $("#kegiatan-laporanrt").dxDataGrid({
             }
         },
         { 
+            caption: "RT",
             dataField: "users.id_rt",
-            caption: "Nomor RT",
+            editorType: "dxSelectBox",
             width: 40,
             visible: (role=="admin")?true:false,
-        },
+            lookup: {
+                dataSource: listRT,  
+                valueExpr: 'id',
+                displayExpr: 'nomor_rt',
+            },
+        },  
         { 
             caption: "Jenis Kegiatan",
             dataField: "id_kegiatan",
