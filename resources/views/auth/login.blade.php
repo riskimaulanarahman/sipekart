@@ -48,7 +48,7 @@
 				<div class="login-buttons">
 					<button type="submit" class="btn btn-danger btn-block btn-lg">Masuk</button>
 				</div>
-				<small>v2.1</small>
+				<small>v2.2</small>
 			</form>
 		</div>
 		<!-- end login-content -->
