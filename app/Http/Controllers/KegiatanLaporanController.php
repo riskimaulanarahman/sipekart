@@ -184,6 +184,7 @@ class KegiatanLaporanController extends Controller
      */
     public function destroy($id)
     {
+        $user = Auth::user();
         $now = Carbon::now();
         try {
 
