@@ -186,14 +186,19 @@ class KegiatanLaporanController extends Controller
     {
         $now = Carbon::now();
         try {
+
             $data = KegiatanLaporan::find($id);
-            if($now->format('m') !== $data->bulan) {
-                return response()->json(["status" => "error", "message" => "Gagal Hapus Data, Tanggal Kadaluarsa"]);
-            } else {  
+            if($user->role == 'admin') {
                 $data->delete();
                 return response()->json(["status" => "success", "message" => "Berhasil Hapus Data"]);
+            } else {
+                if($now->format('m') !== $data->bulan) {
+                    return response()->json(["status" => "error", "message" => "Gagal Hapus Data, Tanggal Kadaluarsa"]);
+                } else {  
+                    $data->delete();
+                    return response()->json(["status" => "success", "message" => "Berhasil Hapus Data"]);
+                }
             }
-
 
         } catch (\Exception $e){
 
